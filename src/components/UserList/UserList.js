@@ -20,6 +20,8 @@ function UserList() {
   //redux
 
   const user = useSelector(state => state.users);
+  const updated = useSelector(state => state.isupdated);
+
   const dispatch = useDispatch();
   const loaduser = value => dispatch(loadUsersSuccess(value));
   useEffect(() => {
