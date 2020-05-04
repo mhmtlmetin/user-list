@@ -5,7 +5,7 @@ import {
   ADD_USER_SUCCESS
 } from "./types";
 
-const initialState = { users: [] };
+const initialState = { users: [], isupdated: true };
 
 export default function Reducer(state = initialState, action) {
   switch (action.type) {
@@ -20,8 +20,14 @@ export default function Reducer(state = initialState, action) {
         users: state.users.filter(item => item != action.payload)
       };
     case UPDATE_USER_SUCCESS:
+      let index = state.users.findIndex(item => item == action.user);
+      console.log(index);
+      let newvalue = (state.users[index] = action.updatedvalue);
+      console.log(state.users);
+      const { users } = state;
       return {
-        ...state
+        users,
+        isupdated: !state.isupdated
       };
 
     default:

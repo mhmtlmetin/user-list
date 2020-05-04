@@ -9,23 +9,21 @@ export function deleteUserSuccess(payload) {
 }
 
 export function updateUserSuccess(payload) {
-  const {
-    user: { phone: telefon },
+  const { user, name, surname, email, gender, phone } = payload;
+  let updatedvalue = {
+    picture: {
+      large: "https://api.adorable.io/avatars/150/abott@adorable.png"
+    },
     name,
     surname,
-    email,
     gender,
+    email,
     phone
-  } = payload;
-
+  };
   return {
     type: types.UPDATE_USER_SUCCESS,
-    telefon,
-    name,
-    surname,
-    gender,
-    email,
-    phone
+    user,
+    updatedvalue
   };
 }
 
