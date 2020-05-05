@@ -12,7 +12,7 @@ export function updateUserSuccess(payload) {
   const { user, name, surname, email, gender, phone } = payload;
   let updatedvalue = {
     picture: {
-      large: "https://api.adorable.io/avatars/150/abott@adorable.png"
+      large: "https://api.adorable.io/avatars/120/abott@adorable.png"
     },
     name: { first: name, last: surname },
     gender,
@@ -27,9 +27,19 @@ export function updateUserSuccess(payload) {
 }
 
 export function addUserSuccess(payload) {
+  const { name, surname, email, gender, phone } = payload;
+  let addednewValue = {
+    picture: {
+      large: "https://api.adorable.io/avatars/120/abott@adorable.png"
+    },
+    name: { first: name, last: surname },
+    gender,
+    email,
+    phone
+  };
   return {
     type: types.ADD_USER_SUCCESS,
-    payload
+    addednewValue
   };
 }
 
