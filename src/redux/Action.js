@@ -14,8 +14,7 @@ export function updateUserSuccess(payload) {
     picture: {
       large: "https://api.adorable.io/avatars/150/abott@adorable.png"
     },
-    name,
-    surname,
+    name: { first: name, last: surname },
     gender,
     email,
     phone
