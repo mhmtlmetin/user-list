@@ -6,6 +6,7 @@ import React, {
   useLayoutEffect,
   useMemo
 } from "react";
+import { NavLink } from "react-bootstrap";
 import axios from "axios";
 import Pagination from "../Pagination/Pagination.js";
 import Posts from "./Posts";
@@ -13,7 +14,7 @@ import Posts from "./Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadUsersSuccess } from "../../redux/Action";
 function UserList() {
-  const [view, SetView] = useState(true);
+  const [view, SetView] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
@@ -40,8 +41,19 @@ function UserList() {
 
   return (
     <div>
-      <a onClick={() => SetView(!view)}>Card/Tablo</a>
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginLeft: "200px",
+          marginRight: "200px",
+          marginBottom: "20px",
+          borderBottom: "2px solid #ddd"
+        }}
+      >
+        <NavLink onClick={() => SetView("card")}>Card</NavLink>
+        <NavLink onClick={() => SetView("tablo")}>Tablo</NavLink>
+      </div>
       <Posts users={currentPosts} view={view} dispatch={dispatch} />
       <Pagination
         postsPerPage={postsPerPage}
