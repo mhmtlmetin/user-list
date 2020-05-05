@@ -24,7 +24,7 @@ const Posts = ({ users, view, dispatch }) => {
   return (
     <ul>
       <Button onClick={handleAdd}>Yeni Kayıt Ekle</Button>
-      {view ? (
+      {view == "card" ? (
         users &&
         users.map(item => {
           return (
