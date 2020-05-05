@@ -1,22 +1,29 @@
 import React, { useState } from "react";
 import "./Post.css";
+import { Button } from "react-bootstrap";
 //modal
 import MyModal from "../Modal/Modal";
 import { deleteUserSuccess } from "../../redux/Action";
 const Posts = ({ users, view, dispatch }) => {
   const [modalShow, setModalShow] = useState(false);
+  const [whichmodal, setWhichmodal] = useState();
   const [currentuser, setCurrentUser] = useState("");
   const deleteItem = value => dispatch(deleteUserSuccess(value));
   const handlaUpdate = item => {
     setCurrentUser(item);
     setModalShow(true);
+    setWhichmodal("update");
   };
   const handleDelete = item => {
     deleteItem(item);
   };
-
+  const handleAdd = () => {
+    setModalShow(true);
+    setWhichmodal("add");
+  };
   return (
     <ul>
+      <Button onClick={handleAdd}>Yeni Kayıt Ekle</Button>
       {view ? (
         users &&
         users.map(item => {
@@ -104,6 +111,7 @@ const Posts = ({ users, view, dispatch }) => {
         user={currentuser}
         show={modalShow}
         onHide={() => setModalShow(false)}
+        setModal={whichmodal}
       />
     </ul>
   );
