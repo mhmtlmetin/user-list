@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 //redux
 import { useDispatch } from "react-redux";
-import { updateUserSuccess } from "../../redux/Action";
+import { updateUserSuccess, addUserSuccess } from "../../redux/Action";
 function MyModal(props) {
   const [name, SetName] = useState("");
   const [surname, SetSurname] = useState("");
@@ -12,6 +12,7 @@ function MyModal(props) {
   //redux
   const dispatch = useDispatch();
   const update = value => dispatch(updateUserSuccess(value));
+  const add = value => dispatch(addUserSuccess(value));
   const handleNameChange = e => {
     console.log(e.target.value);
     SetName(e.target.value);
@@ -31,7 +32,6 @@ function MyModal(props) {
   };
   const handleSubmit = () => {
     const { user } = props;
-
     update({
       user,
       name,
@@ -40,6 +40,18 @@ function MyModal(props) {
       email,
       phone
     });
+    props.onHide();
+  };
+
+  const handleAdd = () => {
+    add({
+      name,
+      surname,
+      gender,
+      email,
+      phone
+    });
+    props.onHide();
   };
   return (
     <>
@@ -119,8 +131,12 @@ function MyModal(props) {
           </InputGroup>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleSubmit}>Kaydet</Button>
-          <Button onClick={props.onHide}>Kapat</Button>
+          {props.setModal == "update" ? (
+            <Button onClick={handleSubmit}>GÜNCELLE</Button>
+          ) : (
+            <Button onClick={handleAdd}>KAYDET</Button>
+          )}
+          <Button onClick={props.onHide}>KAPAT</Button>
         </Modal.Footer>
       </Modal>
     </>
