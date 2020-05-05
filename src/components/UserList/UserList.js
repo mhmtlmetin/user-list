@@ -14,7 +14,7 @@ import Posts from "./Posts";
 import { useSelector, useDispatch } from "react-redux";
 import { loadUsersSuccess } from "../../redux/Action";
 function UserList() {
-  const [view, SetView] = useState("");
+  const [view, SetView] = useState("card");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(10);
 
