@@ -12,7 +12,7 @@ import Pagination from "../Pagination/Pagination.js";
 import Posts from "./Posts";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { loadUsersSuccess } from "../../redux/Action";
+import { loadUsers } from "../../redux/Action";
 function UserList() {
   const [view, SetView] = useState("card");
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,11 +24,9 @@ function UserList() {
   const updated = useSelector(state => state.isupdated);
 
   const dispatch = useDispatch();
-  const loaduser = value => dispatch(loadUsersSuccess(value));
+  const loaduser = value => dispatch(loadUsers(value));
   useEffect(() => {
-    axios.get("https://randomuser.me/api/?results=100").then(response => {
-      loaduser(response.data.results);
-    });
+    loaduser();
   }, []);
 
   // Get current posts
